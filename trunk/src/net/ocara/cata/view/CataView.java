@@ -11,15 +11,46 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * The application's main frame.
  */
 public class CataView extends FrameView {
+    
+    public void abreCaixaLocal() {
+        
+       SwingUtilities.invokeLater(new Runnable() {
+         public void run() {
+           JFileChooser fileChooser = 
+                  new JFileChooser(".");
+           fileChooser.setMultiSelectionEnabled(true);
+           fileChooser.setFileSelectionMode(
+                  JFileChooser.DIRECTORIES_ONLY);
+           int status = fileChooser.showOpenDialog(null);
+           if (status == JFileChooser.APPROVE_OPTION) {
+             File selectedFiles[] = 
+                 fileChooser.getSelectedFiles();
+             for 
+               (int i=0, n=selectedFiles.length; i<n; i++) {
+                     System.out.println("Selected: " 
+                        + selectedFiles[i].getParent() 
+                        + "\\" 
+                        + selectedFiles[i].getName());
+             }
+           }
+           System.exit(0);
+         }
+       });
+    }
+    
+    
 
     public CataView(SingleFrameApplication app) {
         super(app);
@@ -108,6 +139,7 @@ public class CataView extends FrameView {
         jList1 = new javax.swing.JList();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -161,6 +193,16 @@ public class CataView extends FrameView {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(net.ocara.cata.view.CataApp.class).getContext().getResourceMap(CataView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buscaLocal(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(net.ocara.cata.view.CataApp.class).getContext().getActionMap(CataView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
@@ -220,8 +262,14 @@ public class CataView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+private void buscaLocal(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscaLocal
+// TODO add your handling code here:
+    abreCaixaLocal();
+}//GEN-LAST:event_buscaLocal
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList jList1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane2;

@@ -9,6 +9,6 @@ package net.ocara.cata.control;
  *
  * @author daraujo
  */
-public class CataDIRControl {
+public class CataXML {
 
 }
