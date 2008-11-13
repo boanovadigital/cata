@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-package net.ocara.cata.view;
+
 
 import java.io.File;
-   import javax.swing.*;
+import javax.swing.*;
 
    public class DirChoose {
 
@@ -24,10 +24,10 @@ import java.io.File;
                  fileChooser.getSelectedFiles();
              for 
                (int i=0, n=selectedFiles.length; i<n; i++) {
-                     System.out.println("Selected: " 
+                 
+                     System.out.println("DirChoose: " 
                         + selectedFiles[i].getParent() 
-                        + "\\" 
-                        + selectedFiles[i].getName());
+                        + "\\" + selectedFiles[i].getName());
              }
            }
            System.exit(0);
