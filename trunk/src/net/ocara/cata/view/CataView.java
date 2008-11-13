@@ -49,7 +49,7 @@ public class CataView extends FrameView {
                         + "\\" + selectedFiles[i].getName());
              }
            }
-           System.exit(0);
+           //System.exit(0);
          }
        });
     }
