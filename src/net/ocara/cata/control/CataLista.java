@@ -8,6 +8,12 @@ package net.ocara.cata.control;
 import java.io.File;
 
 public class CataLista {
+    
+    public CataLista(String lista) {        
+        System.out.println("CataLista: " + lista);
+        File file= new File( lista );
+        this.listar( file, 0);
+    }
 
   /** Exibe uma listagem do arquivo ou diretório. */
   public void listar( File file, int nivel) {
@@ -17,7 +23,7 @@ public class CataLista {
 
     if (file.isDirectory()) {
       // Exibe o nome do diretório
-      System.out.print( "+ Dir: " + file.getName() );
+      System.out.println( "+ Dir: " + file.getName() );
 
       File[] lista= file.listFiles();
       // Faz uma chamada recursiva para exibir os arquivos e subdiretórios
@@ -26,7 +32,7 @@ public class CataLista {
     }
     else {
       // Exibe o nome do arquivo
-      System.out.print( "* Arq: " + file.getName() );
+      System.out.println( "* Arq: " + file.getName() );
     }
   }
 
@@ -39,12 +45,13 @@ public class CataLista {
   }
 
   /** Método principal */
+  /*
   public static void main (String[] args) {
     CataLista cataLista = new CataLista();
 
     File file= new File( "c:\\tmp\\" );
     cataLista.listar( file, 0);
   }
-
+*/
 }
 

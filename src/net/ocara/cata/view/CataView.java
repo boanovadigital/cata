@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import net.ocara.cata.control.CataLista;
 
 /**
  * The application's main frame.
@@ -39,10 +40,13 @@ public class CataView extends FrameView {
                  fileChooser.getSelectedFiles();
              for 
                (int i=0, n=selectedFiles.length; i<n; i++) {
-                     System.out.println("Selected: " 
+                     System.out.println("CataView: " 
                         + selectedFiles[i].getParent() 
                         + "\\" 
                         + selectedFiles[i].getName());
+                     
+                     CataLista lista = new CataLista( selectedFiles[i].getParent() 
+                        + "\\" + selectedFiles[i].getName());
              }
            }
            System.exit(0);
